@@ -39,5 +39,3 @@ class ProductImageModelViewSet(ModelViewSet):
     serializer_class = ProductImageModelSerializer
     pagination_class = ProductPagination
     lookup_url_kwarg = 'id'
-
-
