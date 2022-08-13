@@ -2,6 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from app.products.views.category import ProductCategoryAPIView
+from app.products.views.join import JoinAPIView
 from app.products.views.product import ProductModelViewSet, ProductImageModelViewSet
 
 router = DefaultRouter()
@@ -11,5 +12,6 @@ router.register('product-image', ProductImageModelViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('product-category/', ProductCategoryAPIView.as_view(), name='product-category')
+    path('product-category/', ProductCategoryAPIView.as_view(), name='product-category'),
+    path('user-join/', JoinAPIView.as_view(), name='user-join')
 ]

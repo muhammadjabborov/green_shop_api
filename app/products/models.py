@@ -2,7 +2,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.migrations.serializer import ChoicesSerializer
 from django.db.models import Model, CharField, IntegerField, FloatField, JSONField, SlugField, ForeignKey, CASCADE, \
-    TextField, ImageField, TextChoices
+    TextField, ImageField, TextChoices, EmailField
 from django.utils.text import slugify
 
 from app.shared.models import BaseModel, DeletedModel
@@ -24,6 +24,10 @@ class Category(Model):
     @property
     def count_product(self):
         return self.product_set.count()
+
+    class Meta:
+        verbose_name_plural = 'Category'
+        db_table = 'category'
 
 
 class Product(BaseModel, DeletedModel):
@@ -54,6 +58,10 @@ class Product(BaseModel, DeletedModel):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name_plural = 'Product'
+        db_table = 'product'
+
 
 class ProductImage(Model):
     product = ForeignKey(Product, CASCADE, related_name='product_image')
@@ -61,3 +69,18 @@ class ProductImage(Model):
 
     def __str__(self):
         return self.product.title
+
+    class Meta:
+        verbose_name_plural = 'ProductImage'
+        db_table = 'product_image'
+
+
+class JoinUser(Model):
+    email = EmailField(max_length=255)
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name_plural = 'JoinedUser'
+        db_table = 'joined_users'

@@ -16,6 +16,7 @@ class CreateProductCategoryModelSerialzier(ModelSerializer):
     def validated_title(self, title):
         if Category.objects.filter(title=title).exists():
             raise ValidationError('This category name already exists')
+        return title
 
     class Meta:
         model = Category
