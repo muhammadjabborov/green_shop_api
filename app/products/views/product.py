@@ -17,6 +17,11 @@ class ProductModelViewSet(ModelViewSet):
     pagination_class = ProductPagination
     lookup_url_kwarg = 'id'
 
+    @action(detail=False, url_path='product-count', url_name='product-count')
+    def get_product_count_by_category(self, request, pk=None, *args, **kwargs):
+        data = Category.objects.annotate(product_count=Count('product')).values_list('name', 'product_count')
+        return Response(dict(data))
+
     def get_serializer_class(self):
         serializer_dict = {
             'list': ListProductModelSerializer,
@@ -26,10 +31,7 @@ class ProductModelViewSet(ModelViewSet):
         }
         return serializer_dict.get(self.action, ProductModelSerializer)
 
-    @action(detail=False, url_path='product-count', url_name='product-count')
-    def get_product_count_by_category(self, request, pk=None, *args, **kwargs):
-        data = Category.objects.annotate(product_count=Count('product')).values_list('name', 'product_count')
-        return Response(dict(data))
+
 
 
 class ProductImageModelViewSet(ModelViewSet):

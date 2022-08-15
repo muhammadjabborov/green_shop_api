@@ -21,7 +21,7 @@ class Util:
         message_data = {'message': 'Successful, please check your email'}
         user_join = JoinUser.objects.get(email=email)
         email_subject = 'Hi ' + user_join.email
-        email_body = 'You are successful join our green_shop'
+        email_body = 'Sodiq KOOOT'
         data = {
             'email_subject': email_subject,
             'email_body': email_body,

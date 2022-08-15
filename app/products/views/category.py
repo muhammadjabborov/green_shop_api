@@ -16,6 +16,7 @@ class ProductCategoryAPIView(GenericAPIView):
     permission_classes = (AllowAny,)
     parser_classes = (MultiPartParser,)
 
+
     def post(self, request, format=None):
         serializer = CreateProductCategoryModelSerialzier(data=request.data)
         if serializer.is_valid(raise_exception=True):

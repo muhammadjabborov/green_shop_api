@@ -1,7 +1,6 @@
 from rest_framework.exceptions import ValidationError
 from rest_framework.fields import EmailField
 from rest_framework.serializers import ModelSerializer
-
 from app.products.models import JoinUser
 
 

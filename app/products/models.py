@@ -1,3 +1,4 @@
+from django.contrib.gis.geoip2.resources import Country
 from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.migrations.serializer import ChoicesSerializer
