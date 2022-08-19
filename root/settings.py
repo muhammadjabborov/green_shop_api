@@ -14,12 +14,15 @@ from pathlib import Path
 import os
 import sys
 
+import django_heroku
+import dj_database_url
+
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-sys.path.append(os.path.join(BASE_DIR / 'app'))
+sys.path.append(os.path.join(BASE_DIR / 'apps'))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
@@ -37,7 +40,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['green-shop-api.herokuapp.com']
 
 # Application definition
 
@@ -48,8 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app.users',
-    'app.products',
+    'apps.users',
+    'apps.products',
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
@@ -94,10 +97,10 @@ WSGI_APPLICATION = 'root.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
+        'NAME': 'd5mn3n5ljs1bjp',
+        'USER': 'hmfuaczwupytdm',
+        'PASSWORD': '36ed925ff219bd2ea3d748398b4578dc08de2697d4fe180fed31ba1c0812b3bf',
+        'HOST': 'ec2-44-195-100-240.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
@@ -136,6 +139,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR / 'static')
+django_heroku.settings(locals())
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
