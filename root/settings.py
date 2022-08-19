@@ -52,7 +52,9 @@ INSTALLED_APPS = [
     'app.products',
     'rest_framework',
     'rest_framework_simplejwt',
-    'drf_yasg'
+    'drf_yasg',
+    'django_filters'
+
 ]
 
 MIDDLEWARE = [
@@ -149,4 +151,3 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = env('EMAIL_NAME')
 EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD')
 EMAIL_USE_TLS = True
-

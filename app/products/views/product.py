@@ -1,9 +1,14 @@
 from django.db.models import Count
+from django_filters import OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
+from rest_framework.filters import SearchFilter
 from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+
+from app.products.filters import ProducrPriceFilter
 from app.shared.rest_framework.pagination import ProductPagination
 from app.products.models import Product, ProductImage, Category
 from app.products.serializers.product import ListProductModelSerializer, ProductImageModelSerializer, \
@@ -11,11 +16,18 @@ from app.products.serializers.product import ListProductModelSerializer, Product
 
 
 class ProductModelViewSet(ModelViewSet):
-    queryset = Product.objects.all()
+    queryset = Product.objects.order_by('id')
     serializer_class = ProductModelSerializer
     permission_classes = (IsAuthenticated,)
     pagination_class = ProductPagination
+    parser_classes = (MultiPartParser,)
+    search_fields = ['id', 'title', 'price', 'short_description', 'long_description']
     lookup_url_kwarg = 'id'
+    filterset_fields = {
+        'price': ['gte', 'lte']
+    }
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+
 
     @action(detail=False, url_path='product-count', url_name='product-count')
     def get_product_count_by_category(self, request, pk=None, *args, **kwargs):
@@ -30,8 +42,6 @@ class ProductModelViewSet(ModelViewSet):
 
         }
         return serializer_dict.get(self.action, ProductModelSerializer)
-
-
 
 
 class ProductImageModelViewSet(ModelViewSet):
