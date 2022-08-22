@@ -13,10 +13,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import sys
-
-import django_heroku
-import dj_database_url
-
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,7 +36,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['green-shop-api.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -96,12 +92,14 @@ WSGI_APPLICATION = 'root.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd5mn3n5ljs1bjp',
-        'USER': 'hmfuaczwupytdm',
-        'PASSWORD': '36ed925ff219bd2ea3d748398b4578dc08de2697d4fe180fed31ba1c0812b3bf',
-        'HOST': 'ec2-44-195-100-240.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
+        #         'ENGINE': 'django.db.backends.postgresql',
+        #         'NAME': env('DB_NAME'),
+        #         'USER': env('DB_USER'),
+        #         'PASSWORD': env('DB_PASSWORD'),
+        #         'HOST': env('DB_HOST'),
+        #         'PORT': '5432'
     }
 }
 
@@ -139,7 +137,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR / 'static')
-django_heroku.settings(locals())
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
@@ -152,6 +149,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = env('EMAIL_NAME')
-EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD')
+EMAIL_HOST_USER = 'futuredevelopmentcommunication@gmail.com'
+EMAIL_HOST_PASSWORD = 'ynxykbsxuyqeujaq'
 EMAIL_USE_TLS = True
