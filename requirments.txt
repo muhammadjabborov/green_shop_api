@@ -33,4 +33,4 @@ tzdata==2022.1
 uritemplate==4.1.1
 urllib3==1.26.11
 whitenoise==6.2.0
-django-cors-headers-3.13.0
+django-cors-headers==3.13.0
