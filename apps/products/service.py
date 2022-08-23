@@ -21,7 +21,7 @@ class Util:
         message_data = {'message': 'Successful, please check your email'}
         user_join = JoinUser.objects.get(email=email)
         email_subject = 'Hi ' + user_join.email
-        email_body = 'Sodiq KOOOT'
+        email_body = 'You are sucessfully join our team'
         data = {
             'email_subject': email_subject,
             'email_body': email_body,
@@ -32,4 +32,3 @@ class Util:
         )
         EmailThread(email).start()
         return message_data
-
