@@ -1,11 +1,17 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView
 
-from apps.users.views import LoginAPIView, RegisterAPIView
+from apps.users.views.addres import AddresModelViewSet
+from apps.users.views.auth import LoginAPIView, RegisterAPIView
+
+router = DefaultRouter()
+
+router.register('', AddresModelViewSet)
 
 urlpatterns = [
-    path('token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
-    path('login/', LoginAPIView.as_view(), name='token_obtain_pair'),
-    path('register/', RegisterAPIView.as_view(), name='register'),
-    # path('verify-email/',VerifyEmail.as_view(),name='email-verify')
+    path('user/login/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
+    path('user/login/', LoginAPIView.as_view(), name='token_obtain_pair'),
+    path('user/register/', RegisterAPIView.as_view(), name='register'),
+    path('user/billing-addres/', include(router.urls))
 ]

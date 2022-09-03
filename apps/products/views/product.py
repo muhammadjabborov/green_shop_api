@@ -18,7 +18,7 @@ from apps.products.serializers.product import ListProductModelSerializer, Produc
 class ProductModelViewSet(ModelViewSet):
     queryset = Product.objects.order_by('id')
     serializer_class = ProductModelSerializer
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     pagination_class = ProductPagination
     parser_classes = (MultiPartParser,)
     search_fields = ['id', 'title', 'price', 'short_description', 'long_description']
@@ -45,7 +45,7 @@ class ProductModelViewSet(ModelViewSet):
 
 class ProductImageModelViewSet(ModelViewSet):
     queryset = ProductImage.objects.all()
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     parser_classes = (MultiPartParser,)
     serializer_class = ProductImageModelSerializer
     pagination_class = ProductPagination

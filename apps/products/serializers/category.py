@@ -13,7 +13,7 @@ class ProductCategoryModelSerializer(ModelSerializer):
 
 class CreateProductCategoryModelSerialzier(ModelSerializer):
 
-    def validated_title(self, title):
+    def validate_title(self, title):
         if Category.objects.filter(title=title).exists():
             raise ValidationError('This category name already exists')
         return title
