@@ -37,12 +37,13 @@ class RegistrationSerializer(Serializer):
 
     def validate_email(self, email):
         if User.objects.filter(email=email).exists():
-            raise ValidationError('This email already taken')
+            raise ValidationError('This email already exists')
+
         return email
 
     def validate_username(self, username):
         if User.objects.filter(username=username).exists():
-            raise ValidationError('This username already taken')
+            raise ValidationError('This username already exists')
         return username
 
     def create(self, validated_data):
