@@ -6,6 +6,8 @@ from django.db.models import TextChoices
 from apps.shared.models import DeletedModel, BaseModel
 
 
+
+
 class UserAddress(BaseModel, DeletedModel):
     class CountryChoices(TextChoices):
         UZB = "UZBEKISTAN/TAS"

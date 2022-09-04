@@ -1,7 +1,7 @@
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import update_last_login, User
 from rest_framework.exceptions import ValidationError
-from rest_framework.fields import CharField
+from rest_framework.fields import CharField, EmailField
 from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.settings import api_settings
@@ -25,7 +25,7 @@ class LoginSerializer(TokenObtainPairSerializer):
         data['data'] = UserDataSerializer(self.user).data
 
         if api_settings.UPDATE_LAST_LOGIN:
-            update_last_login(None,self.user)
+            update_last_login(None, self.user)
 
         return data
 
@@ -33,7 +33,7 @@ class LoginSerializer(TokenObtainPairSerializer):
 class RegistrationSerializer(Serializer):
     username = CharField(max_length=255)
     password = CharField(max_length=255)
-    email = CharField(max_length=255)
+    email = EmailField(max_length=255)
 
     def validate_email(self, email):
         if User.objects.filter(email=email).exists():

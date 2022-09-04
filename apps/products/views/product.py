@@ -16,6 +16,9 @@ from apps.products.serializers.product import ListProductModelSerializer, Produc
 
 
 class ProductModelViewSet(ModelViewSet):
+    """
+      DAO
+    """
     queryset = Product.objects.order_by('id')
     serializer_class = ProductModelSerializer
     # permission_classes = (IsAuthenticated,)
