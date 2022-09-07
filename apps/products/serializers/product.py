@@ -44,3 +44,9 @@ class CreateProductModelSerializer(ModelSerializer):
     class Meta:
         model = Product
         exclude = ('created_at', 'updated_at', 'deleted_at', 'is_deleted')
+
+
+class UpdateProductModelSerializer(ModelSerializer):
+    class Meta:
+        model = Product
+        exclude = ('deleted_at', 'is_deleted')

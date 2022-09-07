@@ -12,7 +12,7 @@ from apps.products.filters import ProducrPriceFilter
 from apps.shared.rest_framework.pagination import ProductPagination
 from apps.products.models import Product, ProductImage, Category
 from apps.products.serializers.product import ListProductModelSerializer, ProductImageModelSerializer, \
-    ProductModelSerializer, RetrieveProductModelSerializer, CreateProductModelSerializer
+    ProductModelSerializer, RetrieveProductModelSerializer, CreateProductModelSerializer, UpdateProductModelSerializer
 
 
 class ProductModelViewSet(ModelViewSet):
@@ -41,6 +41,7 @@ class ProductModelViewSet(ModelViewSet):
             'list': ListProductModelSerializer,
             'create': CreateProductModelSerializer,
             'retrieve': RetrieveProductModelSerializer,
+            'put': UpdateProductModelSerializer
 
         }
         return serializer_dict.get(self.action, ProductModelSerializer)
