@@ -12,7 +12,7 @@ from apps.shared.rest_framework.pagination import JoinUserPagination
 class JoinAPIView(GenericAPIView):
     serializer_class = JoinModelSerializer
     queryset = JoinUser.objects.all()
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     pagination_class = JoinUserPagination
     parser_classes = (MultiPartParser,)
 
