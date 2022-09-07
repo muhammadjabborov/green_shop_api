@@ -12,7 +12,8 @@ router.register('', AddresModelViewSet)
 urlpatterns = [
     path('user/login/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
     path('user/login/', LoginAPIView.as_view(), name='token_obtain_pair'),
+    # path('user/logout/', Logout.as_view(), name='logout'),
     path('user/register/', RegisterAPIView.as_view(), name='register'),
-    path('user/billing-addres/', include(router.urls),name='billing-addres'),
-    path('user/api-list/',UserAPIList.as_view(),name='user-api-list')
+    path('user/billing-addres/', include(router.urls), name='billing-addres'),
+    path('user/api-list/', UserAPIList.as_view(), name='user-api-list')
 ]

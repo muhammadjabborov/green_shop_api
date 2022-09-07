@@ -178,8 +178,22 @@ EMAIL_HOST_USER = 'futuredevelopmentcommunication@gmail.com'
 EMAIL_HOST_PASSWORD = 'ynxykbsxuyqeujaq'
 EMAIL_USE_TLS = True
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     )
+# }
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Basic': {
+            'type': 'basic'
+        },
+        # "JWT [Bearer {JWT}]": {
+        #     "name": "Authorization",
+        #     "type": "apiKey",
+        #     "in": "header",
+        # }
+    },
+    "USE_SESSION_AUTH": False,
 }

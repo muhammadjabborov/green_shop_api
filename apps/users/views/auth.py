@@ -15,8 +15,6 @@ from apps.users.serializers.auth import LoginSerializer, UserDataSerializer, Reg
     EmailVerificationSerializer
 
 
-
-
 class LoginAPIView(TokenObtainPairView):
     """
         DTO
@@ -45,3 +43,12 @@ class RegisterAPIView(GenericAPIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+# class Logout(GenericAPIView):
+#     """
+#         DTO
+#     """
+#     def get(self, request, format=None):
+#         request.user.auth_token.delete()
+#         return Response(status=status.HTTP_200_OK)
