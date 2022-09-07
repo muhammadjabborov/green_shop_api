@@ -28,7 +28,7 @@ class Util:
             'to_email': user_join.email
         }
         email = EmailMessage(
-            subject=data['email_subject'], body=data['email_body'], to=[data['to_email']]
+            subject=data.get('email_subject'), body=data.get('email_body'), to=[data.get('to_email')]
         )
         EmailThread(email).start()
         return message_data
