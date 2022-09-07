@@ -95,9 +95,7 @@ WSGI_APPLICATION = 'root.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-
 AUTH_USER_MODEL = 'auth.User'
-
 
 DATABASES = {
     'default': {
@@ -112,17 +110,16 @@ DATABASES = {
     }
 }
 
-
-SWAGGER_SETTINGS = {
-    "SECURITY_DEFINITIONS": {
-        "JWT [Bearer {JWT}]": {
-            "name": "Authorization",
-            "type": "apiKey",
-            "in": "header",
-        }
-    },
-    "USE_SESSION_AUTH": False,
-}
+# SWAGGER_SETTINGS = {
+#     "SECURITY_DEFINITIONS": {
+#         "JWT [Bearer {JWT}]": {
+#             "name": "Authorization",
+#             "type": "apiKey",
+#             "in": "header",
+#         }
+#     },
+#     "USE_SESSION_AUTH": False,
+# }
 
 FORCE_SCRIPT_NAME = "/"
 
@@ -180,3 +177,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'futuredevelopmentcommunication@gmail.com'
 EMAIL_HOST_PASSWORD = 'ynxykbsxuyqeujaq'
 EMAIL_USE_TLS = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
