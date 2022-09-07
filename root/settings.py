@@ -160,8 +160,8 @@ STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ORIGIN_WHITELIST = [
-    # "http://localhost:3000",
-    "https://green-shop-off.netlify.app/"
+    "http://localhost:3000",
+    # "https://green-shop-off.netlify.app/"
 ]
 
 MEDIA_URL = '/media/'
