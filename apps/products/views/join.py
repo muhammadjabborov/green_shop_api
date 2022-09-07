@@ -24,8 +24,7 @@ class JoinAPIView(GenericAPIView):
         Util.send_email(serializer.validated_data.get('email'))
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
-def get(self, request, *args, **kwargs):
-    join_users = self.queryset.all()
-    serializer = self.serializer_class(join_users, many=True)
-    return Response(serializer.data)
+    def get(self, request, *args, **kwargs):
+        join_users = self.queryset.all()
+        serializer = self.serializer_class(join_users, many=True)
+        return Response(serializer.data)
