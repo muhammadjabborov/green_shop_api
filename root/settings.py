@@ -161,7 +161,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
-    # "https://green-shop-off.netlify.app/"
+    "https://green-shop-off.netlify.app/",
+    "https://futurecommunication.pythonanywhere.com/"
 ]
 
 MEDIA_URL = '/media/'
