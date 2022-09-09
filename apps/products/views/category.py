@@ -16,8 +16,10 @@ class ProductCategoryAPIView(GenericAPIView):
     permission_classes = (AllowAny,)
     parser_classes = (MultiPartParser,)
 
-
     def post(self, request, format=None):
+        """
+        DTO
+        """
         serializer = CreateProductCategoryModelSerialzier(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
@@ -25,7 +27,9 @@ class ProductCategoryAPIView(GenericAPIView):
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, format=None):
+        """
+        GET
+        """
         categories = self.queryset.all()
         serializer = self.serializer_class(categories, many=True)
         return Response(serializer.data)
-

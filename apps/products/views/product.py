@@ -17,11 +17,11 @@ from apps.products.serializers.product import ListProductModelSerializer, Produc
 
 class ProductModelViewSet(ModelViewSet):
     """
-      DAO
+      DTO
     """
     queryset = Product.objects.order_by('id')
     serializer_class = ProductModelSerializer
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     pagination_class = ProductPagination
     parser_classes = (MultiPartParser,)
     search_fields = ['id', 'title', 'price', 'short_description', 'long_description']
@@ -33,6 +33,9 @@ class ProductModelViewSet(ModelViewSet):
 
     @action(detail=False, url_path='product-count', url_name='product-count')
     def get_product_count_by_category(self, request, pk=None, *args, **kwargs):
+        """
+        THIS IS FOR KNOW CATEGORY-COUNT IN PRODUCTS
+        """
         data = Category.objects.annotate(product_count=Count('product')).values_list('name', 'product_count')
         return Response(dict(data))
 
@@ -49,7 +52,7 @@ class ProductModelViewSet(ModelViewSet):
 
 class ProductImageModelViewSet(ModelViewSet):
     queryset = ProductImage.objects.all()
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     parser_classes = (MultiPartParser,)
     serializer_class = ProductImageModelSerializer
     pagination_class = ProductPagination

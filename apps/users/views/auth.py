@@ -17,7 +17,7 @@ from apps.users.serializers.auth import LoginSerializer, UserDataSerializer, Reg
 
 class LoginAPIView(TokenObtainPairView):
     """
-        DTO
+        DAO
     """
     permission_classes = (AllowAny,)
     serializer_class = LoginSerializer
@@ -25,7 +25,7 @@ class LoginAPIView(TokenObtainPairView):
 
 class UserAPIList(ListAPIView):
     """
-     DTO
+     GET ALL USERS
     """
     serializer_class = UserDataSerializer
     queryset = User.objects.all()
@@ -34,7 +34,7 @@ class UserAPIList(ListAPIView):
 
 class RegisterAPIView(GenericAPIView):
     """
-     DTO
+     DAO
     """
     serializer_class = RegistrationSerializer
 

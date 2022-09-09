@@ -18,6 +18,11 @@ class JoinAPIView(GenericAPIView):
     parser_classes = (MultiPartParser,)
 
     def post(self, request):
+        """
+        JOIN NEW USERS AFTER THAT USERS WILL SEND AUTHENICATION MESSAGE
+        :param request:
+        :return:
+        """
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -25,6 +30,9 @@ class JoinAPIView(GenericAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def get(self, request, *args, **kwargs):
+        """
+        GET ALL JOINED USERS
+        """
         join_users = self.queryset.all()
         serializer = self.serializer_class(join_users, many=True)
         return Response(serializer.data)
