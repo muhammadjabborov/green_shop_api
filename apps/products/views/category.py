@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.parsers import MultiPartParser
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from apps.products.models import Category
@@ -13,7 +13,7 @@ class ProductCategoryAPIView(GenericAPIView):
     queryset = Category.objects.all()
     serializer_class = ProductCategoryModelSerializer
     # pagination_class = CategoryPagination
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
     parser_classes = (MultiPartParser,)
 
     def post(self, request, format=None):
@@ -28,7 +28,7 @@ class ProductCategoryAPIView(GenericAPIView):
 
     def get(self, request, format=None):
         """
-        GET
+        GETa
         """
         categories = self.queryset.all()
         serializer = self.serializer_class(categories, many=True)
