@@ -1,4 +1,5 @@
 from rest_framework.parsers import MultiPartParser
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from apps.users.models import UserAddress
@@ -11,5 +12,6 @@ class AddresModelViewSet(ModelViewSet):
     """
     serializer_class = AddresModelSerializer
     queryset = UserAddress.objects.all()
+    permission_classes = (IsAuthenticated,)
     parser_classes = (MultiPartParser,)
     lookup_url_kwarg = 'id'

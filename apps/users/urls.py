@@ -2,6 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView
 
+from apps.users.views.account import ChangeAccountAPIView
 from apps.users.views.addres import AddresModelViewSet
 from apps.users.views.auth import LoginAPIView, RegisterAPIView, UserAPIList
 
@@ -15,5 +16,7 @@ urlpatterns = [
     # path('user/logout/', Logout.as_view(), name='logout'),
     path('user/register/', RegisterAPIView.as_view(), name='register'),
     path('user/billing-addres/', include(router.urls), name='billing-addres'),
-    path('user/api-list/', UserAPIList.as_view(), name='user-api-list')
+    path('user/api-list/', UserAPIList.as_view(), name='user-api-list'),
+    path('user/change-account/<int:pk>', ChangeAccountAPIView.as_view(), name='change-password'),
+    # path('user/change-account/image/<int:pk>', ChangeAccounImageAPIView.as_view(), name='change-image')
 ]

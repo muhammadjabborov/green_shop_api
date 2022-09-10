@@ -1,9 +1,18 @@
 from django.contrib.auth.models import AbstractUser, PermissionsMixin, User
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, integer_validator
 from django.db import models
-from django.db.models import TextChoices
+from django.db.models import TextChoices, ForeignKey, CASCADE, ImageField, IntegerField
+import os
 
 from apps.shared.models import DeletedModel, BaseModel
+
+
+
+
+
+class UserImage(BaseModel, DeletedModel):
+    user = ForeignKey(User, CASCADE, related_name='user_image')
+    image = ImageField(upload_to='user-images/', default='media/images/avatar.png')
 
 
 class UserAddress(BaseModel, DeletedModel):

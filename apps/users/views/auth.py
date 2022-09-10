@@ -1,6 +1,8 @@
-from django.contrib.auth.models import User
+
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
+
+from apps.users.models import User
 from root import settings
 import jwt
 from django.shortcuts import render
