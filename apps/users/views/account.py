@@ -5,8 +5,8 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-
-from apps.users.serializers.account import ChangeAccountModelSerializer
+from apps.users.models import UserImage
+from apps.users.serializers.account import ChangeAccountModelSerializer, ChangeAccountAvatarModelSerializer
 
 
 class ChangeAccountAPIView(GenericAPIView):
@@ -16,8 +16,8 @@ class ChangeAccountAPIView(GenericAPIView):
     parser_classes = (MultiPartParser,)
     lookup_url_kwarg = 'id'
 
-    def put(self, request, pk, *args, **kwargs):
-        user = User.objects.get(pk=pk)
+    def put(self, request, username, *args, **kwargs):
+        user = User.objects.get(username=username)
         serializer = self.serializer_class(user, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -34,8 +34,8 @@ class ChangeAccountAPIView(GenericAPIView):
 #     parser_classes = (MultiPartParser,)
 #     lookup_url_kwarg = 'id'
 #
-#     def put(self, request, pk, *args, **kwargs):
-#         user_img = UserImage.objects.get(pk=pk)
+#     def put(self, request, username, *args, **kwargs):
+#         user_img = UserImage.objects.get(user__username=username)
 #         serializer = ChangeAccountModelSerializer(user_img, data=request.data)
 #         serializer.is_valid(raise_exception=True)
 #         serializer.save()

@@ -17,6 +17,7 @@ urlpatterns = [
     path('user/register/', RegisterAPIView.as_view(), name='register'),
     path('user/billing-addres/', include(router.urls), name='billing-addres'),
     path('user/api-list/', UserAPIList.as_view(), name='user-api-list'),
-    path('user/change-account/<int:pk>', ChangeAccountAPIView.as_view(), name='change-password'),
-    # path('user/change-account/image/<int:pk>', ChangeAccounImageAPIView.as_view(), name='change-image')
+    path('user/change-account/<str:username>', ChangeAccountAPIView.as_view(), name='change-account'),
+    # path('user/change-account/image/<str:username>', ChangeAccounImageAPIView.as_view(), name='change-image')
 ]
+

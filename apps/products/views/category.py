@@ -12,24 +12,23 @@ from apps.shared.rest_framework.pagination import CategoryPagination
 class ProductCategoryAPIView(GenericAPIView):
     queryset = Category.objects.all()
     serializer_class = ProductCategoryModelSerializer
-    # pagination_class = CategoryPagination
-    permission_classes = (IsAuthenticated,)
+    pagination_class = CategoryPagination
     parser_classes = (MultiPartParser,)
 
     def post(self, request, format=None):
         """
-        DTO
+        DTO - CREATE VCATEGORY HERE
         """
-        serializer = CreateProductCategoryModelSerialzier(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, format=None):
         """
-        GETa
+        GET ALL CATEGORIES
         """
         categories = self.queryset.all()
-        serializer = self.serializer_class(categories, many=True)
-        return Response(serializer.data)
+        serializer = self.serializer_class(data=categories, many=True)
+        return Response(serializer.data, status.HTTP_200_OK)
