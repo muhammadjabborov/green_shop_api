@@ -50,7 +50,7 @@ class Product(BaseModel, DeletedModel):
     )
     size = CharField(max_length=25, choices=Type.choices, default=Type.SIZE_S)
     tag = CharField(max_length=255)
-    category = ForeignKey(Category, on_delete=CASCADE)
+    category = ForeignKey(Category, on_delete=CASCADE, related_name='product_category')
 
     @property
     def images(self):
