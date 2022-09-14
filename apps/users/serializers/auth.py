@@ -1,5 +1,7 @@
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import update_last_login, User
+from django.db.transaction import atomic
+from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.fields import CharField, EmailField
 from rest_framework.serializers import ModelSerializer, Serializer
@@ -46,6 +48,7 @@ class RegistrationSerializer(Serializer):
             raise ValidationError('This username already exists')
         return username
 
+    @atomic
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])
         user = User(**validated_data)

@@ -21,10 +21,10 @@ class ProductModelViewSet(ModelViewSet):
     """
     queryset = Product.objects.order_by('id')
     serializer_class = ProductModelSerializer
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     pagination_class = ProductPagination
     parser_classes = (MultiPartParser,)
-    search_fields = ['id', 'title', 'price', 'short_description', 'long_description']
+    search_fields = ['id', 'title', 'tag']
     lookup_url_kwarg = 'id'
     filterset_fields = {
         'price': ['gte', 'lte']
@@ -36,7 +36,7 @@ class ProductModelViewSet(ModelViewSet):
         """
         THIS IS FOR KNOW CATEGORY-COUNT IN PRODUCTS
         """
-        data = Category.objects.annotate(product_count=Count('product')).values_list('name', 'product_count')
+        data = Category.objects.annotate(product_count=Count('product_category')).values_list('name', 'product_count')
         return Response(dict(data))
 
     def get_serializer_class(self):

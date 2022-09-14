@@ -24,7 +24,7 @@ class Category(Model):
 
     @property
     def count_product(self):
-        return self.product_set.count()
+        return self.product_category.count()
 
     class Meta:
         verbose_name_plural = 'Category'

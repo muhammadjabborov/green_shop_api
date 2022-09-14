@@ -14,6 +14,7 @@ class ProductCategoryAPIView(GenericAPIView):
     serializer_class = ProductCategoryModelSerializer
     pagination_class = CategoryPagination
     parser_classes = (MultiPartParser,)
+    lookup_url_kwarg = 'id'
 
     def post(self, request, format=None):
         """
@@ -26,9 +27,6 @@ class ProductCategoryAPIView(GenericAPIView):
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, format=None):
-        """
-        GET ALL CATEGORIES
-        """
-        categories = self.queryset.all()
-        serializer = self.serializer_class(data=categories, many=True)
-        return Response(serializer.data, status.HTTP_200_OK)
+        category = Category.objects.all()
+        serializer = ProductCategoryModelSerializer(category, many=True)
+        return Response(serializer.data)
