@@ -21,7 +21,7 @@ class ProductModelViewSet(ModelViewSet):
     """
     queryset = Product.objects.order_by('id')
     serializer_class = ProductModelSerializer
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     pagination_class = ProductPagination
     parser_classes = (MultiPartParser,)
     search_fields = ['id', 'title', 'tag']
