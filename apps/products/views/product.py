@@ -55,5 +55,6 @@ class ProductImageModelViewSet(ModelViewSet):
     # permission_classes = (IsAuthenticated,)
     parser_classes = (MultiPartParser,)
     serializer_class = ProductImageModelSerializer
-    pagination_class = ProductPagination
+    # pagination_class = ProductPagination
     lookup_url_kwarg = 'id'
+
