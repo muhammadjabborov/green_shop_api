@@ -12,7 +12,7 @@ from apps.shared.rest_framework.pagination import CategoryPagination
 class ProductCategoryAPIView(GenericAPIView):
     queryset = Category.objects.all()
     serializer_class = ProductCategoryModelSerializer
-    pagination_class = CategoryPagination
+    # pagination_class = CategoryPagination
     parser_classes = (MultiPartParser,)
     lookup_url_kwarg = 'id'
 
