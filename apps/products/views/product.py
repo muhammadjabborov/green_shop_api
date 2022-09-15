@@ -22,7 +22,7 @@ class ProductModelViewSet(ModelViewSet):
     queryset = Product.objects.order_by('id')
     serializer_class = ProductModelSerializer
     # permission_classes = (IsAuthenticated,)
-    # pagination_class = ProductPagination
+    pagination_class = ProductPagination
     parser_classes = (MultiPartParser,)
     search_fields = ['id', 'title', 'tag']
     lookup_url_kwarg = 'id'
@@ -55,6 +55,6 @@ class ProductImageModelViewSet(ModelViewSet):
     # permission_classes = (IsAuthenticated,)
     parser_classes = (MultiPartParser,)
     serializer_class = ProductImageModelSerializer
-    # pagination_class = ProductPagination
+    pagination_class = ProductPagination
     lookup_url_kwarg = 'id'
 
