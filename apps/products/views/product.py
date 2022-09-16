@@ -1,3 +1,4 @@
+import django_filters
 from django.db.models import Count
 from django_filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -19,7 +20,7 @@ class ProductModelViewSet(ModelViewSet):
     """
       DTO
     """
-    queryset = Product.objects.order_by('id')
+    queryset = Product.objects.order_by('-created_at')
     serializer_class = ProductModelSerializer
     # permission_classes = (IsAuthenticated,)
     # pagination_class = ProductPagination
