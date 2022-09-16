@@ -10,7 +10,6 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from apps.products.filters import ProducrPriceFilter
-from apps.shared.rest_framework.pagination import ProductPagination
 from apps.products.models import Product, ProductImage, Category
 from apps.products.serializers.product import ListProductModelSerializer, ProductImageModelSerializer, \
     ProductModelSerializer, RetrieveProductModelSerializer, CreateProductModelSerializer, UpdateProductModelSerializer

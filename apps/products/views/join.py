@@ -7,8 +7,6 @@ from apps.products.models import JoinUser
 from apps.products.serializers.join import JoinModelSerializer
 from apps.products.service import Util
 
-from apps.shared.rest_framework.pagination import JoinUserPagination
-
 
 class JoinAPIView(GenericAPIView):
     serializer_class = JoinModelSerializer

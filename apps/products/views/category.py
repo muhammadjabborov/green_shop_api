@@ -6,7 +6,6 @@ from rest_framework.response import Response
 
 from apps.products.models import Category
 from apps.products.serializers.category import CreateProductCategoryModelSerialzier, ProductCategoryModelSerializer
-from apps.shared.rest_framework.pagination import CategoryPagination
 
 
 class ProductCategoryAPIView(GenericAPIView):
