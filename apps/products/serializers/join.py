@@ -16,4 +16,3 @@ class JoinModelSerializer(ModelSerializer):
     class Meta:
         model = JoinUser
         fields = '__all__'
-

@@ -13,7 +13,6 @@ class JoinAPIView(GenericAPIView):
     queryset = JoinUser.objects.all()
     # permission_classes = (IsAuthenticated,)
     # pagination_class = JoinUserPagination
-    parser_classes = (MultiPartParser,)
 
     def post(self, request):
         """

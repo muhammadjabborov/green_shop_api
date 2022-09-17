@@ -15,3 +15,6 @@ class AddresModelViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
     parser_classes = (MultiPartParser,)
     lookup_url_kwarg = 'id'
+    # http_method_names = ['get']
+
+
