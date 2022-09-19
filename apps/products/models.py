@@ -66,7 +66,7 @@ class Product(BaseModel, DeletedModel):
 
 class ProductImage(Model):
     product = ForeignKey(Product, CASCADE, related_name='product_image')
-    image = ImageField(upload_to='images/')
+    image = ImageField(upload_to='images/', max_length=255)
 
     def __str__(self):
         return self.product.title
