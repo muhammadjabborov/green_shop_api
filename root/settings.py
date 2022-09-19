@@ -160,12 +160,12 @@ STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 # CORS_ALLOW_ALL_ORIGINS = True
 
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "https://green-shop-off.netlify.app/",
-    "https://futurecommunication.pythonanywhere.com/"
-]
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:3000",
+#     "http://localhost:3001",
+#     "https://green-shop-off.netlify.app/",
+#     "https://futurecommunication.pythonanywhere.com/"
+# ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
