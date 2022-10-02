@@ -2,8 +2,10 @@ from rest_framework.serializers import ModelSerializer
 
 from apps.products.models import Product, ProductImage
 
-
 # product_image
+from apps.products.serializers.category import ProductCategoryModelSerializer
+
+
 class ProductImageModelSerializer(ModelSerializer):
     class Meta:
         model = ProductImage
@@ -27,12 +29,13 @@ class ListProductModelSerializer(ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'title', 'price', 'category')
+        fields = ('id', 'title', 'price')
 
 
 # product_detail_get
 class RetrieveProductModelSerializer(ModelSerializer):
     images = ProductImageModelSerializer(many=True)
+    category = ProductCategoryModelSerializer(read_only=True)
 
     class Meta:
         model = Product
