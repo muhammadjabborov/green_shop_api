@@ -27,7 +27,7 @@ class ListProductModelSerializer(ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'title', 'price')
+        fields = ('id', 'title', 'price', 'category')
 
 
 # product_detail_get
