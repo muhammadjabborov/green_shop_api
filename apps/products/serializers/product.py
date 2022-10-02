@@ -21,6 +21,7 @@ class ProductModelSerializer(ModelSerializer):
 
 # product_get_queryset
 class ListProductModelSerializer(ModelSerializer):
+    category = ProductCategoryModelSerializer(read_only=True)
 
     def to_representation(self, instance):
         represent = super().to_representation(instance)
@@ -29,7 +30,7 @@ class ListProductModelSerializer(ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'title', 'price')
+        fields = ('id', 'title', 'price', 'category')
 
 
 # product_detail_get
