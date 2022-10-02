@@ -10,7 +10,7 @@ from apps.products.serializers.category import CreateProductCategoryModelSerialz
 
 class ProductCategoryAPIView(GenericAPIView):
     queryset = Category.objects.all()
-    serializer_class = ProductCategoryModelSerializer
+    serializer_class = CreateProductCategoryModelSerialzier
     # pagination_class = CategoryPagination
 
     lookup_url_kwarg = 'id'
