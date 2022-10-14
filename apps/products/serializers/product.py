@@ -21,11 +21,12 @@ class ProductModelSerializer(ModelSerializer):
 
 # product_get_queryset
 class ListProductModelSerializer(ModelSerializer):
-    category = ProductCategoryModelSerializer(read_only=True)
+    # category = ProductCategoryModelSerializer(read_only=True)
 
     def to_representation(self, instance):
         represent = super().to_representation(instance)
         represent['images'] = ProductImageModelSerializer(instance.product_image.first()).data
+        represent['category'] = ProductCategoryModelSerializer(instance.category).data
         return represent
 
     class Meta:

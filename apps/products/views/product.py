@@ -5,7 +5,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from rest_framework.parsers import MultiPartParser
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
@@ -48,6 +48,13 @@ class ProductModelViewSet(ModelViewSet):
 
         }
         return serializer_dict.get(self.action, ProductModelSerializer)
+
+    def get_permissions(self):
+        if self.action in ['update', 'partial_update', 'destroy', 'create']:
+            self.permission_classes = [IsAuthenticated, ]
+        else:
+            self.permission_classes = [AllowAny, ]
+        return super(self.__class__, self).get_permissions()
 
 
 class ProductImageModelViewSet(ModelViewSet):

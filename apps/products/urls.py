@@ -12,6 +12,6 @@ router.register('product-image', ProductImageModelViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('product-category/', ProductCategoryAPIView.as_view(), name='product-category'),
-    path('user-join/', JoinAPIView.as_view(), name='user-join')
+    path('product-category', ProductCategoryAPIView.as_view(), name='product-category'),
+    path('user-join', JoinAPIView.as_view(), name='user-join')
 ]

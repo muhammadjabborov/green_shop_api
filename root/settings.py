@@ -155,17 +155,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 # CORS_ALLOW_ALL_ORIGINS = True
 
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "https://green-shop-off.netlify.app/",
-    "https://futurecommunication.pythonanywhere.com/"
-]
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:3000",
+#     "http://localhost:3001",
+#     "https://green-shop-off.netlify.app/",
+#     "https://futurecommunication.pythonanywhere.com/"
+# ]
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
@@ -182,19 +184,17 @@ EMAIL_HOST_USER = 'futuredevelopmentcommunication@gmail.com'
 EMAIL_HOST_PASSWORD = 'ynxykbsxuyqeujaq'
 EMAIL_USE_TLS = True
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     )
-# }
 
-
-LOGIN_URL = '/user/login/'
-LOGIN_REDIRECT_URL = '/user/login/'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+
     # 'ROTATE_REFRESH_TOKENS': False,
     # 'BLACKLIST_AFTER_ROTATION': False,
     # 'UPDATE_LAST_LOGIN': False,
@@ -222,20 +222,4 @@ SIMPLE_JWT = {
     # 'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     # 'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-}
-
-SWAGGER_SETTINGS = {
-    'SECURITY_DEFINITIONS': {
-        'basic': {
-            'type': 'basic',
-            'description': 'Authenicate'
-        },
-        'Bearer': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header',
-            'description': 'Type in the *\'Value\'* input box below: **\'Bearer &lt;JWT&gt;\'**,'
-                           ' where JWT is the JSON web token you get back when logging in.'
-        }
-    }
 }
